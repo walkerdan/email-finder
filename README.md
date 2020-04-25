@@ -16,8 +16,13 @@ Example:
 
 java -jar email-finder.jar http://cdm.depaul.edu
 
+### Recent changes (4/25/2020)
+1. Now write out found email addresses, list of successful URLs, and a list of failed URLs
+1. StorageService class was added to encapulated storage details
+1. PageCrawler is now created with with 2 parameters: a StorageService and a maximum number of email addresses to find
+1. The main method of EmailFinder was refactored to provide a run() method for easier testing
+
 ### TODO
-1. Currently only outputs the email addresses, not the URL lists
 1. Make max emails configurable (currently hard coded to 50).
 1. Make app stop sooner.  With max emails set to 50, it still finds 90 emails
 1. Clean up progress information

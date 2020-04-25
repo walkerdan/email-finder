@@ -31,9 +31,9 @@ public class PageFetcher {
     Document doc = Jsoup.connect(url).get();
     return doc.outerHtml();
     } catch (IOException e) {
-      throw new PageFetcherException("unable to fetch " + url, e);
+      throw new EmailFinderException("unable to fetch " + url, e);
     } catch (IllegalArgumentException e) {
-      throw new PageFetcherException("Invalid URL " + url, e);
+      throw new EmailFinderException("Invalid URL " + url, e);
     }
   }
 
@@ -42,9 +42,9 @@ public class PageFetcher {
       Document doc = Jsoup.connect(url).get();
       return doc;
     } catch (IOException e) {
-      throw new PageFetcherException("unable to fetch " + url, e);
+      throw new EmailFinderException("unable to fetch " + url, e);
     } catch (IllegalArgumentException e) {
-      throw new PageFetcherException("Invalid URL " + url, e);
+      throw new EmailFinderException("Invalid URL " + url, e);
     }
   }
 

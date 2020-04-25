@@ -14,13 +14,28 @@ package edu.depaul.email;
  */
 public class EmailFinder {
 
-  public static void main(String[] args) {
+  private StorageService setupStorage() {
+    StorageService storage = new StorageService();
+    storage
+        .addLocation("email", "email.txt")
+        .addLocation("good-links", "good-links.txt")
+        .addLocation("bad-links", "badlinks.txt");
+    return storage;
+  }
+
+  public void run(String[] args) {
     if (args.length >= 1) {
-        String root = args[0];
-        PageCrawler crawler = new PageCrawler();
-        crawler.crawl(root);
-        crawler.report("emails.txt");
+      String root = args[0];
+      StorageService storage = setupStorage();
+      PageCrawler crawler = new PageCrawler(storage);
+      crawler.crawl(root);
+      crawler.report();
     }
+  }
+
+  public static void main(String[] args) {
+    EmailFinder finder = new EmailFinder();
+    finder.run(args);
   }
 
 }
