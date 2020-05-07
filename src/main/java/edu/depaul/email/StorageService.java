@@ -17,15 +17,17 @@ import java.util.Map;
  */
 public class StorageService {
 
-  private Map<String, String> locations = new HashMap<>();
+  public enum StorageType {EMAIL, GOODLINKS, BADLINKS};
 
-  public StorageService addLocation(String name, String location) {
+  private Map<StorageType, String> locations = new HashMap<>();
 
-    locations.put(name, location);
+  public StorageService addLocation(StorageType key, String location) {
+
+    locations.put(key, location);
     return this;
   }
 
-  public void storeList(String handle, Collection<String> aList) {
+  public void storeList(StorageType handle, Collection<String> aList) {
     String location = locations.get(handle);
 
     FileOutputStream stream = null;

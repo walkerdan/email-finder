@@ -5,6 +5,11 @@
  */
 package edu.depaul.email;
 
+import edu.depaul.email.StorageService.StorageType;
+import static edu.depaul.email.StorageService.StorageType.EMAIL;
+import static edu.depaul.email.StorageService.StorageType.GOODLINKS;
+import static edu.depaul.email.StorageService.StorageType.BADLINKS;
+
 /**
  * This is the main class for this application.
  * Usage:
@@ -17,9 +22,9 @@ public class EmailFinder {
   private StorageService setupStorage() {
     StorageService storage = new StorageService();
     storage
-        .addLocation("email", "email.txt")
-        .addLocation("good-links", "good-links.txt")
-        .addLocation("bad-links", "badlinks.txt");
+        .addLocation(EMAIL, "email.txt")
+        .addLocation(GOODLINKS, "good-links.txt")
+        .addLocation(BADLINKS, "badlinks.txt");
     return storage;
   }
 
@@ -30,6 +35,8 @@ public class EmailFinder {
       PageCrawler crawler = new PageCrawler(storage);
       crawler.crawl(root);
       crawler.report();
+    } else {
+      System.out.println("NO starting URL");
     }
   }
 
