@@ -29,10 +29,14 @@ public class EmailFinder {
   }
 
   public void run(String[] args) {
+    int limit = 5;
+    if (args.length >=2) {
+      limit = Integer.parseInt(args[1]);
+    }
     if (args.length >= 1) {
       String root = args[0];
       StorageService storage = setupStorage();
-      PageCrawler crawler = new PageCrawler(storage);
+      PageCrawler crawler = new PageCrawler(storage, limit);
       crawler.crawl(root);
       crawler.report();
     } else {
