@@ -51,7 +51,11 @@ public class PageCrawler {
       return;
     }
     if (base == null) {
-      base = url;
+      if (url.startsWith("http")) {
+        base = url;
+      } else {
+        base = "";
+      }
     }
     Document doc = null;
     try {
